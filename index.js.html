@@ -46,12 +46,23 @@
   }
 
   function onSpeak() {
+    const synth = window.speechSynthesis;
     const speech = new SpeechSynthesisUtterance();
+    const voices = synth.getVoices();
+    const language = $('#target').val();
 
-    speech.lang = $('#target').val();
+    speech.lang = language;
 
     speech.text = $('#translation').text();
 
-    window.speechSynthesis.speak(speech);
+    for (let i = 0; i < voices.length; i++) {
+      const voice = voices[i];
+
+      if (voice.lang.includes(language)) {
+        speech.voice = voice;
+      }
+    }
+
+    synth.speak(speech);
   }
 </script>
