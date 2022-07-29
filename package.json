@@ -1,0 +1,11 @@
+{
+  "name": "translate",
+  "version": "1.0.0",
+  "description": "Translate text using Google Apps Script",
+  "author": "NightWolf Software Development",
+  "homepage": "https://nightwolf.dev",
+  "keywords": ["google apps script", "text to speech", "web speech api", "speechsynthesis"],
+  "devDependencies": {
+    "@types/google-apps-script": "^1.0.53"
+  }
+}

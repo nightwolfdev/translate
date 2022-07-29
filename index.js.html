@@ -1,0 +1,57 @@
+<script>
+  $(function() {
+    $('form').on('submit', onSubmit);
+
+    $('#source [value="en"]').prop('selected', true);
+
+    $('#target [value="pt"]').prop('selected', true);
+
+    $('#speak').hide();
+
+    $('#speak').on('click', onSpeak);
+  });
+
+  function onSubmit(e) {
+    const phrase = $('#phrase').val().trim();
+    const source = $('#source').val();
+    const target = $('#target').val();
+
+    e.preventDefault();
+
+    if (phrase && source !== target) {
+      $('#translateBtn').prop('disabled', true);
+      $('#translation').text('Translating...');
+
+      $('#speak').hide();
+
+      google.script.run
+        .withSuccessHandler(onTranslateSuccess)
+        .withFailureHandler(onTranslateFailure)
+        .translate(phrase, source, target);
+    }
+  }
+
+  function onTranslateSuccess(phrase) {
+    $('#translateBtn').prop('disabled', false);
+    $('#translation').text(phrase);
+
+    if (window.speechSynthesis) {
+      $('#speak').show();
+    }
+  }
+
+  function onTranslateFailure() {
+    $('#translateBtn').prop('disabled', false);
+    $('#translation').text('Sorry, there was an issue getting the translation.');
+  }
+
+  function onSpeak() {
+    const speech = new SpeechSynthesisUtterance();
+
+    speech.lang = $('#target').val();
+
+    speech.text = $('#translation').text();
+
+    window.speechSynthesis.speak(speech);
+  }
+</script>
