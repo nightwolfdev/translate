@@ -1,5 +1,7 @@
 # Translate
 
+![Translate App](./translate-app.png)
+
 Translate app using Google Apps Script and the Web Speech API.
 
 ## Links
