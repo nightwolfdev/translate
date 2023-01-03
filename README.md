@@ -2,7 +2,7 @@
 
 ![Translate App](./translate-app.png)
 
-Translate app using Google Apps Script and the Web Speech API.
+Translate text to and from English, French, German, Italian, Portuguese, and Spanish.
 
 ## Links
 
